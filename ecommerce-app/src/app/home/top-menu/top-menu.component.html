@@ -1,0 +1,9 @@
+<!-- <p>top-menu works!</p> -->
+<nav>
+    <!-- {{categories|json}} -->
+    <ul>
+      <li *ngFor="let category of categories" (click)="filterByCategory(category.id)">
+        {{ category.name }}
+      </li>
+    </ul>
+  </nav>

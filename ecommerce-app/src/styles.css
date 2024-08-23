@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+  }
+  
+  .cart-info button {
+    margin-left: 10px;
+  }
+  

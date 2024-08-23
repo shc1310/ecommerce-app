@@ -1,0 +1,12 @@
+<!-- <p>product-list works!</p> -->
+ <!-- {{products|json}} -->
+<section class="product-list">
+    <div *ngFor="let product of products" class="product-card">
+      <!-- <img  alt="{{product.name}}"> -->
+      <h4>{{product.name}}</h4>
+      <p>Price: {{product.price}}</p>
+      <p>Rating: {{product.rating}}</p>
+      <button (click)="addToCart(product)">Add to Cart</button>
+      <button (click)="addToWishlist(product)">Add to Wishlist</button>
+    </div>
+  </section>
