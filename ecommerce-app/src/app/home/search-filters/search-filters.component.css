@@ -1,0 +1,13 @@
+aside {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
+    height: 100%;
+  }
+  .filter-group {
+    margin-bottom: 1rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }

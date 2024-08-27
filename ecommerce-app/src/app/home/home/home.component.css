@@ -26,7 +26,7 @@ app.component.css
   
   .main-container {
     display: flex;
-    margin-top: 110px; /* Adjust for header and top menu height */
+    margin-top: 2rem; /* Adjust for header and top menu height */
     margin-left: 0; /* Adjust for sidebar width */
   }
   

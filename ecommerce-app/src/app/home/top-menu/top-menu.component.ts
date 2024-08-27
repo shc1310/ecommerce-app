@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Category } from '../../shared/category.model';
 import { ProductService } from '../product.service';
 import { response } from 'express';
@@ -12,6 +12,7 @@ export class TopMenuComponent implements OnInit {
  
   categories: Category[] =[];
   productService=inject(ProductService);
+constructor( private ref: ChangeDetectorRef,){}
 
   ngOnInit(): void {
     this.productService.getCategories().subscribe((response)=>
@@ -19,8 +20,7 @@ export class TopMenuComponent implements OnInit {
    }
 
   filterByCategory(categoryId: number): void {
-    const filteredProducts = this.productService.getProducts().value.filter(product => product.categoryId === categoryId);
-    this.productService.getProducts().next(filteredProducts);
-    console.log('fikterd category',filteredProducts)
+    this.productService.filterProductsByCategory(categoryId);
+    console.log('filtered category')
   }
 }

@@ -1,1 +1,20 @@
-<p>search-filters works!</p>
+<!-- <p>search-filters works!</p> -->
+<aside>
+    <h3>Filter by:</h3>
+    <div class="filter-group">
+      <label>Brand</label>
+      <select [(ngModel)]="selectedBrand" (change)="filterByBrand()">
+        <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Price {{selectedPrice}}</label>
+      <input type="range" min="0" max="100000" step="1000" [(ngModel)]="selectedPrice" (change)="filterByPrice()"/>
+    </div>
+    <div class="filter-group">
+      <label>Rating</label>
+      <select [(ngModel)]="selectedRating" (change)="filterByRating()">
+        <option *ngFor="let rating of ratings" [value]="rating">{{ rating }}</option>
+      </select>
+    </div>
+  </aside>

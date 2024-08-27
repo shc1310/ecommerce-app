@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../shared/category.model';
 import { Product } from '../shared/product.model';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, filter, Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +26,20 @@ export class ProductService {
     { id: 8, name: 'Samsung Galaxy', price: 10000, rating: 4, categoryId: 1 },
   ];
   private productsSubject = new BehaviorSubject<Product[]>(this.products);
+  productsObservable = this.productsSubject.asObservable();
+  // private filteredProductsSubject = new BehaviorSubject<Product[]>(this.products);
+
   private cartSubject = new BehaviorSubject<Product[]>([]);
   private wishlistSubject = new BehaviorSubject<Product[]>([]);
   constructor() { }
-  getProducts(): BehaviorSubject<Product[]> {
-    return this.productsSubject;
+  setProducts(products:Product[],isFilter?:boolean){
+    console.log('in subjects',this.productsSubject)
+    if(!isFilter)
+      products=this.products
+     this.productsSubject.next(products);
+  }
+  getProducts():Observable<Product[]>{
+return this.productsObservable;
   }
   getCategories():Observable<Category[]>{
     return of(this.categories);
@@ -53,5 +62,27 @@ export class ProductService {
 
   getWishlist(): BehaviorSubject<Product[]> {
     return this.wishlistSubject;
+  }
+
+  filterProductsByCategory(categoryId: number): void {
+    const filteredProducts = this.products.filter(product => product.categoryId === categoryId);
+    this.productsSubject.next(filteredProducts);
+  }
+
+  filterProductsByBrand(brand:string): void {
+    const filteredProducts = this.products.filter(product => product.name.includes(brand));
+    console.log('filtered brand',filteredProducts)
+    this.productsSubject.next(filteredProducts);
+  }
+
+  filterProductsByPrice(selectedPrice:number){
+const filteredProducts=this.products.filter(products=>products.price>=selectedPrice);
+this.productsSubject.next(filteredProducts);
+  }
+
+  filterProductsByRating(selectedRating:number|string){
+    console.log('rating',selectedRating)
+    const filteredProducts=this.products.filter(products=>products.rating>=Number(selectedRating));
+    this.productsSubject.next(filteredProducts);
   }
 }

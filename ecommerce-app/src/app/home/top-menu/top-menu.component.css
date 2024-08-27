@@ -4,6 +4,7 @@ nav {
     gap: 1rem;
     background-color: #f8f9fa;
     padding: 1rem;
+    justify-content: center;
 }
 
 ul {
@@ -18,4 +19,9 @@ li {
     margin-right: 10px;
     text-decoration: none;
     color: #007bff;
+    cursor:pointer;
+
+}
+.category-align{
+    margin:3rem;
 }

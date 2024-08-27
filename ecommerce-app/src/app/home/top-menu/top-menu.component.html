@@ -3,7 +3,7 @@
     <!-- {{categories|json}} -->
     <ul>
       <li *ngFor="let category of categories" (click)="filterByCategory(category.id)">
-        {{ category.name }}
+       <span class="category-align">{{ category.name }}</span> 
       </li>
     </ul>
   </nav>

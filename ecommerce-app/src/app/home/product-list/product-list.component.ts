@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, SimpleChanges } from '@angular/core';
 import { Product } from '../../shared/product.model';
 import { ProductService } from '../product.service';
 
@@ -9,17 +9,21 @@ import { ProductService } from '../product.service';
 })
 export class ProductListComponent {
   products: Product[] = [];
-   productService=inject( ProductService)
-  constructor() {}
-
-  ngOnInit(): void {
-
-    this.productService.getProducts().subscribe(products => {
-      this.products = products;
-    });
-    console.log('products',this.products)
+   
+  productService=inject( ProductService)
+ 
+   constructor() {
   }
 
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe((products)=>{
+        console.log('products list',products)
+        this.products=products;
+      })
+    console.log('products',this.products)
+  }
+ 
+ 
   addToCart(product: Product): void {
     this.productService.addToCart(product);
   }
